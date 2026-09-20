@@ -1,6 +1,12 @@
 ﻿<style>
-    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
-
+    @@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>IT Elective 2 - Prefinal Exam Answers</title>
+        <style>
     :root {
         --coral: #F28076;
         --pink: #FFB6AF;
@@ -288,7 +294,7 @@
         margin-bottom: 5px;
     }
 
-    @media (max-width: 700px) {
+    @@media (max-width: 700px) {
         body {
             padding: 18px 12px 40px;
         }
@@ -331,7 +337,7 @@
         }
     }
 
-    @media (max-width: 450px) {
+    @@media (max-width: 450px) {
         header h1 {
             font-size: 1.35rem;
         }
@@ -349,3 +355,103 @@
         }
     }
 </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>IT ELECTIVE 2 — PREFINAL EXAMINATION</h1>
+            <p>Answer Key, Multiple-Choice Options & Architectural Explanations</p>
+        </header>
+
+        <div id="questions-container"></div>
+    </div>
+
+    <script>
+
+        const myAnswers = {
+            1: 'C',
+            2: 'B',
+            3: 'C',
+            4: 'A',
+            5: 'C',
+            6: 'B',
+            7: 'B',
+            8: 'B',
+            9: 'B',
+            10: 'B',
+            11: 'B',
+            12: 'A',
+            13: 'B',
+            14: 'A',
+            15: 'B',
+            16: 'A',
+            17: 'B',
+            18: 'B',
+            19: 'B',
+            20: 'A'
+        };
+
+        const examQuestions = [
+            { itemNumber: 1, topic: "Relational Data Modeling", questionText: "What is the main problem solved by using a database instead of an in-memory collection?", options: ["A. It makes C# code shorter", "B. It prevents the application from restarting", "C. It allows data to persist after the application stops", "D. It removes the need for MVC"], explanation: "In-memory data lives in RAM and is lost when the app closes. Databases provide persistent long-term storage." },
+            { itemNumber: 2, topic: "Relational Data Modeling", questionText: "Which approach is being used when an existing database is used to generate EF Core entity classes?", options: ["A. Code-First", "B. Database-First", "C. Model-First", "D. Controller-First"], explanation: "Database-First reverse-engineers existing table schemas into C# entity models and a DbContext class." },
+            { itemNumber: 3, topic: "Relational Data Modeling", questionText: "What is the primary purpose of Entity Framework Core?", options: ["A. To create HTML pages automatically", "B. To replace the MVC Controller", "C. To map objects in code to relational database data", "D. To replace the C# compiler"], explanation: "EF Core is an Object-Relational Mapper (ORM) that bridges C# objects with relational database tables." },
+            { itemNumber: 4, topic: "Relational Data Modeling", questionText: "Which EF Core component is primarily responsible for communicating with the database?", options: ["A. DbContext", "B. DbSetView", "C. ControllerContext", "D. RazorContext"], explanation: "DbContext manages database connections, session context, querying, and change tracking." },
+            { itemNumber: 5, topic: "Relational Data Modeling", questionText: "What does the command 'dotnet ef dbcontext scaffold' primarily do?", options: ["A. Deletes the database", "B. Creates a new MVC project", "C. Generates EF Core models and a DbContext from an existing database", "D. Starts the MVC application"], explanation: "The scaffold command inspects an existing database and generates C# model classes and DbContext code." },
+            { itemNumber: 6, topic: "Conceptual Data Architecture", questionText: "Where is a database connection string commonly stored in an ASP.NET Core MVC application?", options: ["A. Program.cs only", "B. appsettings.json", "C. Index.cshtml", "D. Student.cs"], explanation: "appsettings.json serves as the standard centralized configuration file for settings like connection strings." },
+            { itemNumber: 7, topic: "Conceptual Data Architecture", questionText: "A Student belongs to exactly one Section, while a Section can contain many students. What type of relationship is this?", options: ["A. One-to-One", "B. One-to-Many", "C. Many-to-Many", "D. Many-to-One only"], explanation: "From Section to Student, it represents a 1:N (One-to-Many) relationship." },
+            { itemNumber: 8, topic: "Conceptual Data Architecture", questionText: "In the provided example, what is SectionId?", options: ["A. Primary key of Student", "B. Foreign key referencing Section", "C. Navigation property", "D. Database connection string"], explanation: "SectionId acts as the Foreign Key linking the Student record to its associated Section primary key." },
+            { itemNumber: 9, topic: "Conceptual Data Architecture", questionText: "What is the purpose of a navigation property such as 'public Section Section { get; set; }'?", options: ["A. It stores the database password", "B. It represents a relationship to another entity", "C. It creates a new database", "D. It validates the student's name"], explanation: "Navigation properties allow object-oriented navigation between related entities in code." },
+            { itemNumber: 10, topic: "Conceptual Data Architecture", questionText: "What does .Include() generally allow EF Core to do?", options: ["A. Delete the Section table", "B. Load related Section data together with Students", "C. Create a new Student", "D. Validate Student input"], explanation: "Include triggers Eager Loading to retrieve related navigation property data in the same query." },
+            { itemNumber: 11, topic: "Data Normalization & Validation", questionText: "Why might a ViewModel be used when displaying Student and Section information?", options: ["A. To replace the database", "B. To combine or shape the data specifically needed by the view", "C. To automatically create database tables", "D. To prevent controllers from using LINQ"], explanation: "ViewModels decouple UI view requirements from underlying database domain models." },
+            { itemNumber: 12, topic: "Data Normalization & Validation", questionText: "What is the main benefit of Include(s => s.Section)?", options: ["A. It loads the related Section navigation property", "B. It creates a Section object manually", "C. It removes the foreign key", "D. It prevents the query from accessing the database"], explanation: "It populates the s.Section navigation property automatically during query execution." },
+            { itemNumber: 13, topic: "Data Normalization & Validation", questionText: "Which type of validation occurs in the browser before a request is sent to the server?", options: ["A. Database-level validation", "B. Client-side validation", "C. Server-side validation", "D. EF Core migration validation"], explanation: "Client-side validation runs inside the user's browser before form submission." },
+            { itemNumber: 14, topic: "Data Normalization & Validation", questionText: "Why is server-side validation still necessary if client-side validation exists?", options: ["A. Client-side validation can be bypassed", "B. Client-side validation automatically modifies the database", "C. Server-side validation only works with SQLite", "D. Client-side validation cannot display messages"], explanation: "Users can disable browser JavaScript or bypass client-side code, making server checks necessary for security." },
+            { itemNumber: 15, topic: "Data Normalization & Validation", questionText: "A school requires every student to have a unique Student Number. Which rule best represents this requirement?", options: ["A. Student Number should always be nullable", "B. Student Number should be unique", "C. Student Number should always be the same", "D. Student Number should contain only spaces"], explanation: "Uniqueness rules prevent duplicate identity records across the application." },
+            { itemNumber: 16, topic: "In-Memory Data Storage & Operations", questionText: "Which is the best reason for having a database-level unique constraint on StudentNumber?", options: ["A. It protects data integrity even if application-level validation is bypassed", "B. It makes Razor Views render faster", "C. It removes the need for a Controller", "D. It automatically creates a ViewModel"], explanation: "Database-level constraints serve as the final integrity check to prevent corrupt data entry." },
+            { itemNumber: 17, topic: "In-Memory Data Storage & Operations", questionText: "What is the purpose of a try...catch block in a controller?", options: ["A. To create navigation properties", "B. To catch and handle exceptions that may occur during execution", "C. To generate database tables", "D. To perform client-side validation"], explanation: "Try-catch blocks intercept runtime errors to prevent unhandled application crashes." },        { itemNumber: 18, topic: "In-Memory Data Storage & Operations", questionText: "Which middleware is commonly used in ASP.NET Core for centralized exception handling?", options: ["A. UseDatabase()", "B. UseExceptionHandler()", "C. UseValidationHandler()", "D. UseMvcDatabase()"], explanation: "UseExceptionHandler registers centralized middleware for catching unhandled app exceptions." },
+            { itemNumber: 19, topic: "In-Memory Data Storage & Operations", questionText: "A user requests /Student/999, but Student 999 does not exist. What would be the most appropriate response?", options: ["A. Display the student's information anyway", "B. Display a Not Found (404) response/page", "C. Delete Student 999", "D. Create Student 999 automatically"], explanation: "HTTP 404 Not Found signals that the requested resource URI could not be located." },
+            { itemNumber: 20, topic: "In-Memory Data Storage & Operations", questionText: "A student already belongs to Section A. The application attempts to assign the same student to Section A again. What is the primary concern?", options: ["A. Data integrity", "B. HTML formatting", "C. CSS inheritance", "D. Razor syntax"], explanation: "Duplicate assignments compromise state correctness and relational data integrity." }
+
+
+        ];
+
+        const container = document.getElementById('questions-container');
+
+        examQuestions.forEach(q => {
+            const card = document.createElement('div');
+            card.className = 'question-card';
+
+            const selectedAnswer = myAnswers[q.itemNumber] || 'C';
+
+            let optionsHtml = '';
+            q.options.forEach(opt => {
+                const isCorrect = opt.startsWith(selectedAnswer);
+                optionsHtml += `
+                    <li class="option-item ${isCorrect ? 'correct' : ''}">
+                        ${opt}
+                    </li>
+                `;
+            });
+
+            card.innerHTML = `
+                <div class="question-header">
+                    <span class="item-badge">Item #${q.itemNumber}</span>
+                    <span class="topic-badge">${q.topic}</span>
+                </div>
+                <div class="question-text">${q.questionText}</div>
+                <ul class="options-list">
+                    ${optionsHtml}
+                </ul>
+                <div class="explanation-box">
+                    <div class="explanation-title">💡 Explanation:</div>
+                    ${q.explanation}
+                </div>
+            `;
+
+            container.appendChild(card);
+        });
+    </script>
+
+</body>
+</html>
